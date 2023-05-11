@@ -8,7 +8,7 @@ public class OrderCardTest {
     void ShouldPlaceTheOrderWithValidData() {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
-        
+
 
     }
 }
