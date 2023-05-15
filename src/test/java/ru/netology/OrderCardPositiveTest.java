@@ -1,5 +1,4 @@
 package ru.netology;
-import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -12,7 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class OrderCardPositiveTest {
 
     int days = 3;
-    ChooseData chooseData = new ChooseData();
+    ChooseDate chooseData = new ChooseDate();
     @Test
     public void ShouldPlaceTheOrderWithValidData() {
         open("http://localhost:9999/");

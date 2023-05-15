@@ -8,15 +8,15 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class OrderCardNegativeTest {
-    int days = 3;
-    ChooseData chooseData = new ChooseData();
+
+    ChooseDate chooseData = new ChooseDate();
 
     @Test
     public void UnavailableCity() {
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Зарайск");
         $x("//input[@placeholder='Дата встречи']").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $x("//input[@placeholder='Дата встречи']").setValue(chooseData.generateDate(days));
+        $x("//input[@placeholder='Дата встречи']").setValue(chooseData.generateDate(3));
         $("[data-test-id='name'] input").setValue("Иванов Иван");
         $("[data-test-id='phone'] input").setValue("+79295555555");
         $("[data-test-id='agreement']").click();
@@ -30,7 +30,7 @@ public class OrderCardNegativeTest {
         open("http://localhost:9999/");
         $x("//input[@placeholder='Город']").doubleClick().sendKeys(Keys.BACK_SPACE);
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
-        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( days ) );
+        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( 3 ) );
         $( "[data-test-id='name'] input" ).setValue( "Пупкин Василий" );
         $( "[data-test-id='phone'] input" ).setValue( "+79295555555" );
         $( "[data-test-id='agreement']" ).click();
@@ -43,7 +43,7 @@ public class OrderCardNegativeTest {
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
-        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( days ));
+        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( 3 ));
         $( "[data-test-id='name'] input" ).setValue( "Ivanov Ivan" );
         $( "[data-test-id='phone'] input" ).setValue( "+79295555555" );
         $( "[data-test-id='agreement']" ).click();
@@ -57,7 +57,7 @@ public class OrderCardNegativeTest {
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
-        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( days ));
+        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( 3 ));
         $( "[data-test-id='phone'] input" ).setValue( "+79295555555" );
         $( "[data-test-id='agreement']" ).click();
         $x( "//*[text()='Забронировать']" ).click();
@@ -68,7 +68,7 @@ public class OrderCardNegativeTest {
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
-        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( days ));
+        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( 3 ));
         $( "[data-test-id='name'] input" ).setValue( "Пупкин Василий" );
         $( "[data-test-id='agreement']" ).click();
         $x( "//*[text()='Забронировать']" ).click();
@@ -81,7 +81,7 @@ public class OrderCardNegativeTest {
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
-        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( days ));
+        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( 3 ));
         $( "[data-test-id='name'] input" ).setValue( "Пупкин Василий" );
         $( "[data-test-id='phone'] input" ).setValue( "79295555555" );
         $( "[data-test-id='agreement']" ).click();
@@ -95,14 +95,32 @@ public class OrderCardNegativeTest {
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
-        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( days ));
+        $( "[data-test-id='date'] input" ).setValue( chooseData.generateDate( 3 ));
         $( "[data-test-id='name'] input" ).setValue( "Пупкин Василий" );
         $( "[data-test-id='phone'] input" ).setValue( "+79295555555" );
         $x( "//*[text()='Забронировать']" ).click();
         $( ".checkbox__text" ).shouldHave( exactText( "Я соглашаюсь с условиями обработки и использования моих персональных данных" ) ).shouldBe( Condition.visible );
     }
+    @Test
+
+    public void invalidData(){
+
+        open("http://localhost:9999/");
+        $( "[data-test-id='city'] input" ).setValue( "Москва" );
+        $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
+        $( "[data-test-id='date'] input" ).setValue("15.05.2022");
+        $( "[data-test-id='name'] input" ).setValue( "Пупкин Василий" );
+        $( "[data-test-id='phone'] input" ).setValue( "+79295555555" );
+        $( "[data-test-id='agreement']" ).click();
+        $$( "button" ).find( exactText( "Забронировать" ) ).click();
+        $( "[data-test-id='date'] span.input__sub" ).shouldHave( exactText( "Заказ на выбранную дату невозможен" ) ).shouldBe( visible );
+
+
+
+    }
+
+    }
 
 
 
 
-}
