@@ -12,7 +12,7 @@ public class OrderCardNegativeTest {
     ChooseDate chooseData = new ChooseDate();
 
     @Test
-    public void UnavailableCity() {
+    public void unavailableCity() {
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Зарайск");
         $x("//input[@placeholder='Дата встречи']").doubleClick().sendKeys(Keys.BACK_SPACE);
@@ -26,7 +26,7 @@ public class OrderCardNegativeTest {
     }
 
     @Test
-    public void EmptyCity(){
+    public void emptyCity(){
         open("http://localhost:9999/");
         $x("//input[@placeholder='Город']").doubleClick().sendKeys(Keys.BACK_SPACE);
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
@@ -39,7 +39,7 @@ public class OrderCardNegativeTest {
     }
     @Test
 
-    public void InvalidName(){
+    public void invalidName(){
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
@@ -53,7 +53,7 @@ public class OrderCardNegativeTest {
     }
 
     @Test
-    public void EmptyName(){
+    public void emptyName(){
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
@@ -64,7 +64,7 @@ public class OrderCardNegativeTest {
         $( "[data-test-id='name'] span.input__sub" ).shouldHave( exactText( "Поле обязательно для заполнения" ) ).shouldBe( visible );
     }
     @Test
-    public void EmptyPhone() {
+    public void emptyPhone() {
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
@@ -77,7 +77,7 @@ public class OrderCardNegativeTest {
     }
 
     @Test
-    public void InvalidPhone(){
+    public void invalidPhone(){
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
@@ -91,7 +91,7 @@ public class OrderCardNegativeTest {
     }
 
     @Test
-    public void WithoutAgreement(){
+    public void withoutAgreement(){
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );

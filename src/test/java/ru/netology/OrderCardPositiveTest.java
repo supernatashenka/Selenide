@@ -13,7 +13,7 @@ public class OrderCardPositiveTest {
     int days = 3;
     ChooseDate chooseData = new ChooseDate();
     @Test
-    public void ShouldPlaceTheOrderWithValidData() {
+    public void shouldPlaceTheOrderWithValidData() {
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
         $( "[data-test-id='date'] input" ).doubleClick().sendKeys( Keys.BACK_SPACE );
@@ -28,7 +28,7 @@ public class OrderCardPositiveTest {
     }
 
     @Test
-    public void ShouldPlaceTheOrderWithDoubleSurname() {
+    public void shouldPlaceTheOrderWithDoubleSurname() {
 
         open("http://localhost:9999/");
         $( "[data-test-id='city'] input" ).setValue( "Москва" );
